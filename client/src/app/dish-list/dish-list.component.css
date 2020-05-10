@@ -1,0 +1,25 @@
+mat-card img{
+  /*object-fit: cover; !*this makes the image in src fit to the size specified below*!*/
+  width: 400px; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+}
+
+.dish-row {
+  height: 100%;
+}
+
+.dish-card {
+  display: inline-block;
+  margin: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+.selection-board {
+  width:500px;
+  background-color: rgba(0, 0, 0, .03) ;
+}
+.image-tr{
+  cursor: pointer;
+}

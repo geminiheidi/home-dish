@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title>我们家的菜谱</mat-card-title>
+  <mat-card-content class="content">
+    <div class="selection-board">
+      <h2>你已经选择了:</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let dish of selectedDishes">{{dish}}</mat-list-item>
+      </mat-list>
+    </div>
+    <div>
+      <mat-card class="dish-card" *ngFor="let dish of dishes">
+      <mat-card-header>
+        <mat-card-title><mat-checkbox  color="primary" (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox></mat-card-title>
+      </mat-card-header>
+      <img mat-card-image class="image-tr" [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'" alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
+    </mat-card>
+    </div>
+
+  </mat-card-content>
+
+  <button mat-fab color="primary" [routerLink]="['/dish-add']">添加新菜</button>
+</mat-card>
+
