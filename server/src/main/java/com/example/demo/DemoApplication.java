@@ -34,7 +34,7 @@ class Dish {
 	@GeneratedValue
 	private Long id;
 	private String name;
-	@Column(name = "picByte", length = 1000000000)
+	@Column(name = "picByte", nullable=true, length = 1000000000)
 	private byte[] picByte;
 
 	public Dish() {
@@ -102,9 +102,8 @@ class DishController {
 
 	@PostMapping("/add")
 	@CrossOrigin()
-	public void addDish(@RequestParam("imageFile") MultipartFile file, @RequestParam("name") String name) throws IOException {
-		System.out.println("Original Image Byte Size - " + file.getBytes().length);
-		Dish img = new Dish(name, file.getBytes());
+	public void addDish(@RequestParam(value="imageFile",required=false) MultipartFile file, @RequestParam("name") String name) throws IOException {
+		Dish img = new Dish(name, file==null?null:file.getBytes());
 		repository.save(img);
 	}
 }
