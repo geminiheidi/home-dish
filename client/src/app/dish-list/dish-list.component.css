@@ -17,9 +17,21 @@ mat-card img{
   flex-direction: row;
 }
 .selection-board {
-  width:500px;
+  width: 8vw;
+  min-width: 200px;
   background-color: rgba(0, 0, 0, .03) ;
+}
+
+.showcase-board {
+  width: 92vw;
+  height: 90vh;
+  overflow: auto;
 }
 .image-tr{
   cursor: pointer;
+}
+
+.add-dish-button {
+  position: fixed;
+  bottom: 30px;
 }
