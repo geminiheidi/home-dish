@@ -4,25 +4,18 @@
       <mat-card-title><h2>{{edit? '编辑' + dish.name : '添加新菜'}} </h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <input type="hidden" name="href" [(ngModel)]="dish.href">
       <mat-form-field>
         <input matInput placeholder="菜名" [(ngModel)]="dish.name"
                required name="name" #name>
       </mat-form-field>
-      <app-upload-image *ngIf="!edit; else elseBlock"></app-upload-image>
-      <ng-template #elseBlock>
-        <div>
-          <img mat-card-image style="width: 250px; height: 200px;" [src]="'data:image/jpeg;base64,' + dish.picByte" alt="Photo of a dish" >
-        </div>
-      </ng-template>
-
-
+      <app-upload-image  [edit]="edit" [dish]="dish" *ngIf="hasloaded==true || edit==false"></app-upload-image>
     </mat-card-content>
+
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit"
               [disabled]="!dishForm.form.valid">保存</button>
-      <button mat-raised-button color="secondary" (click)="remove(dish.href)"
-              *ngIf="dish.href" type="button">删除</button>
+      <button mat-raised-button color="secondary" (click)="remove(dish.id)"
+              *ngIf="dish.id" type="button">删除</button>
       <a mat-button routerLink="/dish-list">取消</a>
     </mat-card-actions>
     <mat-card-footer>

@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
 import {DishService} from '../shared/dish/dish.service';
 import {UploadImageComponent} from '../upload-image/upload-image.component';
 
@@ -16,6 +15,7 @@ export class DishEditComponent implements OnInit, OnDestroy {
   dish: any = {};
   sub: Subscription;
   edit = false;
+  hasloaded = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,15 +26,16 @@ export class DishEditComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       const id = params.id;
       if (id) {
+        this.edit = true;
         this.dishServe.get(id).subscribe((dish: any) => {
           if (dish) {
             this.dish = dish;
-            this.dish.href = dish._links.self.href;
-            this.edit = true;
+            this.dish.id = id;
           } else {
             console.log(`Dish with id '${id}' not found, returning to list`);
             this.gotoList();
           }
+          this.hasloaded = true;
         });
       }
     });
@@ -57,13 +58,13 @@ export class DishEditComponent implements OnInit, OnDestroy {
     if (this.uploadComponent) {
       dish.append('imageFile', this.uploadComponent.fileToUpload);
     }
-    this.dishServe.save(form.href ? form : dish).subscribe(result => {
+    this.dishServe.save(dish, this.dish.id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
 
-  remove(href) {
-    this.dishServe.remove(href).subscribe(result => {
+  remove(id: any) {
+    this.dishServe.remove(id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

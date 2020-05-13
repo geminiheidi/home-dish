@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
 export class DishService {
   public API = `http://${window.location.hostname}:8080`;
   public DISH_API = this.API + '/dishes';
-  public DISH_ADD_API = this.API + '/add';
 
   constructor(private http: HttpClient) {}
   getAll(): Observable<any> {
@@ -19,17 +18,17 @@ export class DishService {
     return this.http.get(this.DISH_API + '/' + id);
   }
 
-  save(dish: any): Observable<any> {
+  save(dish: any, id: any): Observable<any> {
     let result: Observable<any>;
-    if (dish.href) {
-      result = this.http.patch(dish.href, dish);
+    if (id) {
+      result = this.http.patch(this.DISH_API + '/' + id, dish);
     } else {
-      result = this.http.post(this.DISH_ADD_API, dish);
+      result = this.http.post(this.DISH_API, dish);
     }
     return result;
   }
 
-  remove(href: string) {
-    return this.http.delete(href);
+  remove(id: string) {
+    return this.http.delete(this.DISH_API + '/' + id);
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
@@ -8,12 +8,19 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class UploadImageComponent implements OnInit {
   @Output()
   imageEvent = new EventEmitter<string>();
+  @Input()
+  edit = false;
+  @Input()
+  dish = null;
+  @Input()
+  hasloaded = false;
 
-  imageUrl = '/assets/img/default.png';
+  imageUrl = 'assets/img/default.png';
   fileToUpload: File = null;
   constructor() { }
 
   ngOnInit(): void {
+    this.imageUrl = this.edit ? (this.dish.picByte ? 'data:image/jpeg;base64,' + this.dish.picByte : 'assets/img/default.png') : 'assets/img/default.png';
   }
   handleFileInput(file: FileList){
     this.fileToUpload = file.item(0);

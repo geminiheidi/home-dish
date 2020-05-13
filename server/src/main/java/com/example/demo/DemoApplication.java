@@ -13,8 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,7 +82,6 @@ class Dish {
 	}
 }
 
-@RepositoryRestResource
 @CrossOrigin()
 interface DishRepository extends JpaRepository<Dish, Long> {
 
@@ -95,15 +98,36 @@ class DishController {
 
 	@GetMapping("/dishes")
 	@CrossOrigin()
-	public Collection<com.example.demo.Dish> ShowDishes() {
+	public Collection<com.example.demo.Dish> getDishes() {
 		return repository.findAll().stream()
 				.collect(Collectors.toList());
 	}
 
-	@PostMapping("/add")
+	@PatchMapping("/dishes/{id}")
+	@CrossOrigin()
+	public void patchDish(@PathVariable(value="id") long id, @RequestParam(value="imageFile",required=false) MultipartFile file, @RequestParam(value="name", required=false) String name) throws IOException {
+		Dish dish = repository.findById(id).get();
+		if (name != null) dish.setName(name);
+		if (file != null) dish.setPicByte(file.getBytes());
+		repository.save(dish);
+	}
+
+	@GetMapping("/dishes/{id}")
+	@CrossOrigin()
+	public Dish getDish(@PathVariable(value="id") long id) {
+		return repository.findById(id).get();
+	}
+
+	@PostMapping("/dishes")
 	@CrossOrigin()
 	public void addDish(@RequestParam(value="imageFile",required=false) MultipartFile file, @RequestParam("name") String name) throws IOException {
-		Dish img = new Dish(name, file==null?null:file.getBytes());
+		Dish img = new Dish(name, file == null ? null:file.getBytes());
 		repository.save(img);
+	}
+
+	@DeleteMapping("/dishes/{id}")
+	@CrossOrigin()
+	public void deleteDish(@PathVariable(value="id") long id) {
+		repository.deleteById(id);
 	}
 }
