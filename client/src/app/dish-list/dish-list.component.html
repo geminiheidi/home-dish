@@ -4,13 +4,13 @@
     <div class="selection-board">
       <h2>你已经选择了:</h2>
       <mat-list>
-        <mat-list-item *ngFor="let dish of selectedDishes">{{dish}}</mat-list-item>
+        <mat-list-item *ngFor="let dish of showDishes()">{{dish}}</mat-list-item>
       </mat-list>
     </div>
     <div class="showcase-board">
       <mat-card class="dish-card" *ngFor="let dish of dishes">
       <mat-card-header>
-        <mat-card-title><mat-checkbox  color="primary" (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox></mat-card-title>
+        <mat-card-title><mat-checkbox  [checked]="checkSelected(dish)" color="primary" (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox></mat-card-title>
       </mat-card-header>
       <img mat-card-image class="image-tr" [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'" alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
     </mat-card>
@@ -18,6 +18,9 @@
 
   </mat-card-content>
 
-  <button class="add-dish-button" mat-fab color="primary" [routerLink]="['/dish-add']">添加新菜</button>
+  <div class="opt-button">
+    <button  mat-fab color="primary" [routerLink]="['/dish-add']">添加新菜</button>
+    <button  mat-fab color="primary" (click)="clearSelected()">清空选择</button>
+  </div>
 </mat-card>
 

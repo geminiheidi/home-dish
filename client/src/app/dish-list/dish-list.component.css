@@ -31,7 +31,7 @@ mat-card img{
   cursor: pointer;
 }
 
-.add-dish-button {
+.opt-button {
   position: fixed;
   bottom: 30px;
 }

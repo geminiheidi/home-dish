@@ -16,6 +16,7 @@ import { DishEditComponent } from './dish-edit/dish-edit.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     MatToolbarModule,
     FormsModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
