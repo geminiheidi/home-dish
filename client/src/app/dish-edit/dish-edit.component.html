@@ -3,11 +3,17 @@
     <mat-card-header>
       <mat-card-title><h2>{{edit? '编辑' + dish.name : '添加新菜'}} </h2></mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class = "row">
       <mat-form-field>
         <input matInput placeholder="菜名" [(ngModel)]="dish.name"
                required name="name" #name>
       </mat-form-field>
+      <div class="type-selection">
+        <mat-checkbox style="margin-right:10px" [(ngModel)]="dish.breakfast" name="breakfast">属于早餐菜谱</mat-checkbox>
+        <mat-checkbox style="margin-right:10px" [(ngModel)]="dish.lunch" name="lunch">属于中餐菜谱</mat-checkbox>
+        <mat-checkbox style="margin-right:10px" [(ngModel)]="dish.dinner" name="dinner">属于晚餐菜谱</mat-checkbox>
+      </div>
+
       <app-upload-image  [edit]="edit" [dish]="dish" *ngIf="hasloaded==true || edit==false"></app-upload-image>
     </mat-card-content>
 

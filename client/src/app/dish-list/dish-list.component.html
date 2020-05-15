@@ -8,19 +8,68 @@
       </mat-list>
     </div>
     <div class="showcase-board">
-      <mat-card class="dish-card" *ngFor="let dish of dishes">
-      <mat-card-header>
-        <mat-card-title><mat-checkbox  [checked]="checkSelected(dish)" color="primary" (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox></mat-card-title>
-      </mat-card-header>
-      <img mat-card-image class="image-tr" [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'" alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
-    </mat-card>
+      <mat-tab-group>
+        <mat-tab label="全部">
+          <mat-card class="dish-card" *ngFor="let dish of dishes">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-checkbox [checked]="checkSelected(dish)" color="primary"
+                              (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="image-tr"
+                 [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'"
+                 alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="早餐">
+          <mat-card class="dish-card" *ngFor="let dish of breakfastDishes">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-checkbox [checked]="checkSelected(dish)" color="primary"
+                              (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="image-tr"
+                 [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'"
+                 alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="中餐">
+          <mat-card class="dish-card" *ngFor="let dish of lunchDishes">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-checkbox [checked]="checkSelected(dish)" color="primary"
+                              (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="image-tr"
+                 [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'"
+                 alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="晚餐">
+          <mat-card class="dish-card" *ngFor="let dish of dinnerDishes">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-checkbox [checked]="checkSelected(dish)" color="primary"
+                              (change)="onChange(dish.name,$event)">{{dish.name}}</mat-checkbox>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="image-tr"
+                 [src]="dish.picByte ? 'data:image/jpeg;base64,' + dish.picByte : 'assets/img/default.png'"
+                 alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+
     </div>
 
   </mat-card-content>
 
   <div class="opt-button">
-    <button  mat-fab color="primary" [routerLink]="['/dish-add']">添加新菜</button>
-    <button  mat-fab color="primary" (click)="clearSelected()">清空选择</button>
+    <button mat-fab color="primary" [routerLink]="['/dish-add']">添加新菜</button>
+    <button mat-fab color="primary" (click)="clearSelected()">清空选择</button>
   </div>
 </mat-card>
 

@@ -17,6 +17,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import {NgxWebstorageModule} from 'ngx-webstorage';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
     FormsModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    MatTabsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

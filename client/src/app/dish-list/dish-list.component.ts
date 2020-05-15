@@ -9,6 +9,9 @@ import {LocalStorageService} from 'ngx-webstorage';
 })
 export class DishListComponent implements OnInit {
   dishes: Array<any>;
+  breakfastDishes: Array<any>;
+  lunchDishes: Array<any>;
+  dinnerDishes: Array<any>;
   selectedDishes: any[] = [];
   constructor(private dishService: DishService, public localSt: LocalStorageService) { }
 
@@ -16,6 +19,9 @@ export class DishListComponent implements OnInit {
     this.dishService.getAll().subscribe(data =>
     {
       this.dishes = data;
+      this.breakfastDishes = this.dishes.filter(x => x.breakfast);
+      this.lunchDishes = this.dishes.filter(x => x.lunch);
+      this.dinnerDishes = this.dishes.filter(x => x.dinner);
     } );
   }
 
