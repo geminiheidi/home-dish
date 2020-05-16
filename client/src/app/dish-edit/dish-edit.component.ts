@@ -12,7 +12,7 @@ import {UploadImageComponent} from '../upload-image/upload-image.component';
 export class DishEditComponent implements OnInit, OnDestroy {
   @ViewChild(UploadImageComponent, {static: false}) uploadComponent;
 
-  dish: any = {};
+  dish: any = {'breakfast':false, 'lunch':false, 'dinner':false};
   sub: Subscription;
   edit = false;
   hasloaded = false;
