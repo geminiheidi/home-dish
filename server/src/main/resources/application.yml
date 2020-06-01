@@ -1,0 +1,15 @@
+
+
+okta:
+  oauth2:
+    client-id: 0oadgh6u0CVXtwLEU4x6
+    issuer: https://dev-533130.okta.com/oauth2/default
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/dish?serverTimezone=PST
+    username: dish
+    password: yummy
