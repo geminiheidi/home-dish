@@ -6,18 +6,13 @@ import {OktaAuthService} from '@okta/okta-angular';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit{
   title = 'client';
-  isAuthenticated: boolean;
-
+  isAuthenticated;
   constructor(public oktaAuth: OktaAuthService) {
   }
 
   async ngOnInit() {
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-    // Subscribe to authentication state changes
-    this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
-    );
+    this.isAuthenticated = true;
   }
 }

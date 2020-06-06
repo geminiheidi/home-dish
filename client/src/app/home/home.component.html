@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-content>
+    <button mat-raised-button color="accent" *ngIf="!isAuthenticated"
+            (click)="oktaAuth.loginRedirect()">登录
+    </button>
+
+    <button mat-raised-button color="accent" *ngIf="isAuthenticated"
+            [routerLink]="['/dish-list']">我们家的菜谱
+    </button>
+  </mat-card-content>
+</mat-card>
