@@ -9,7 +9,7 @@
     </div>
     <div class="showcase-board">
       <mat-tab-group>
-        <mat-tab label="全部">
+        <mat-tab label="全部({{dishes.length}})">
           <mat-card class="dish-card" *ngFor="let dish of dishes">
             <mat-card-header>
               <mat-card-title>
@@ -22,7 +22,7 @@
                  alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
           </mat-card>
         </mat-tab>
-        <mat-tab label="早餐">
+        <mat-tab label="早餐({{breakfastDishes.length}})">
           <mat-card class="dish-card" *ngFor="let dish of breakfastDishes">
             <mat-card-header>
               <mat-card-title>
@@ -35,7 +35,7 @@
                  alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
           </mat-card>
         </mat-tab>
-        <mat-tab label="中餐">
+        <mat-tab label="中餐({{lunchDishes.length}})">
           <mat-card class="dish-card" *ngFor="let dish of lunchDishes">
             <mat-card-header>
               <mat-card-title>
@@ -48,7 +48,7 @@
                  alt="Photo of a dish" [routerLink]="['/dish-add', dish.id]">
           </mat-card>
         </mat-tab>
-        <mat-tab label="晚餐">
+        <mat-tab label="晚餐({{dinnerDishes.length}})">
           <mat-card class="dish-card" *ngFor="let dish of dinnerDishes">
             <mat-card-header>
               <mat-card-title>
