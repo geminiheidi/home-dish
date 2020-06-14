@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DishListComponent} from './dish-list/dish-list.component';
 import {DishEditComponent} from './dish-edit/dish-edit.component';
-import {OktaCallbackComponent} from '@okta/okta-angular';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dish-list', pathMatch: 'full'},
@@ -17,10 +16,6 @@ const routes: Routes = [
   {
     path: 'dish-add/:id',
     component: DishEditComponent
-  },
-  {
-    path: 'implicit/callback',
-    component: OktaCallbackComponent
   }
 ];
 
