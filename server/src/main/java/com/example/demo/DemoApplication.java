@@ -134,6 +134,7 @@ class Dish {
   }
 }
 
+@CrossOrigin()
 interface DishRepository extends JpaRepository<Dish, Long> {
 
 }
@@ -148,12 +149,14 @@ class DishController {
   }
 
   @GetMapping("/dishes")
+  @CrossOrigin()
   public Collection<com.example.demo.Dish> getDishes() {
     return repository.findAll().stream()
         .collect(Collectors.toList());
   }
 
   @PatchMapping("/dishes/{id}")
+  @CrossOrigin()
   public void patchDish(@PathVariable(value = "id") long id,
       @RequestParam(value = "imageFile", required = false) MultipartFile file,
       @RequestParam(value = "name", required = false) String name,
@@ -174,11 +177,13 @@ class DishController {
   }
 
   @GetMapping("/dishes/{id}")
+  @CrossOrigin()
   public Dish getDish(@PathVariable(value = "id") long id) {
     return repository.findById(id).get();
   }
 
   @PostMapping("/dishes")
+  @CrossOrigin()
   public void addDish(@RequestParam(value = "imageFile", required = false) MultipartFile file,
       @RequestParam("name") String name, @RequestParam("breakfast") boolean breakfast,
       @RequestParam("lunch") boolean lunch, @RequestParam("dinner") boolean dinner)
@@ -188,6 +193,7 @@ class DishController {
   }
 
   @DeleteMapping("/dishes/{id}")
+  @CrossOrigin()
   public void deleteDish(@PathVariable(value = "id") long id) {
     repository.deleteById(id);
   }
