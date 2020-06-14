@@ -3,17 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {DishListComponent} from './dish-list/dish-list.component';
 import {DishEditComponent} from './dish-edit/dish-edit.component';
 import {OktaCallbackComponent} from '@okta/okta-angular';
-import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/dish-list', pathMatch: 'full'},
   {
     path: 'dish-list',
     component: DishListComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent
   },
   {
     path: 'dish-add',

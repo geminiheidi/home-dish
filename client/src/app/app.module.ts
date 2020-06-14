@@ -19,9 +19,9 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
+import { DishAuthComponent } from './dish-auth/dish-auth.component';
 import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
 import {AuthInterceptor} from './shared/okta/auth.interceptor';
-import { HomeComponent } from './home/home.component';
 
 const config = {
   issuer: 'https://dev-533130.okta.com/oauth2/default',
@@ -34,7 +34,7 @@ const config = {
     DishListComponent,
     DishEditComponent,
     UploadImageComponent,
-    HomeComponent,
+    DishAuthComponent,
   ],
   imports: [
     BrowserModule,
