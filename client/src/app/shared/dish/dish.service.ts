@@ -11,24 +11,24 @@ export class DishService {
 
   constructor(private http: HttpClient) {}
   getAll(): Observable<any> {
-    return this.http.get(this.DISH_API);
+    return this.http.get(this.DISH_API, {withCredentials: true});
   }
 
   get(id: string) {
-    return this.http.get(this.DISH_API + '/' + id);
+    return this.http.get(this.DISH_API + '/' + id, {withCredentials: true});
   }
 
   save(dish: any, id: any): Observable<any> {
     let result: Observable<any>;
     if (id) {
-      result = this.http.patch(this.DISH_API + '/' + id, dish);
+      result = this.http.patch(this.DISH_API + '/' + id, dish, {withCredentials: true});
     } else {
-      result = this.http.post(this.DISH_API, dish);
+      result = this.http.post(this.DISH_API, dish, {withCredentials: true});
     }
     return result;
   }
 
   remove(id: string) {
-    return this.http.delete(this.DISH_API + '/' + id);
+    return this.http.delete(this.DISH_API + '/' + id, {withCredentials: true});
   }
 }
